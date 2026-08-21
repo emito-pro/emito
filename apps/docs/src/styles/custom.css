@@ -1,6 +1,36 @@
-/* Emito docs — violet accent, matching emito-website's brand color. */
+/* Emito docs — matches emito-website's type and dark surface system.
+   Accent was already aligned; this adds the fonts and the 4-tier elevation
+   ladder from the marketing site's globals.css so the docs don't read as a
+   generic Starlight instance next to it. Light mode keeps Starlight's own
+   surface defaults — the website has no light palette to port from. */
+
+@font-face {
+  font-family: 'Mona Sans';
+  src: url('/fonts/MonaSansVF.woff2') format('woff2-variations');
+  font-weight: 100 900;
+  font-stretch: 75% 125%;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Commit Mono';
+  src: url('/fonts/CommitMono-400.woff2') format('woff2');
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Commit Mono';
+  src: url('/fonts/CommitMono-700.woff2') format('woff2');
+  font-weight: 700;
+  font-display: swap;
+}
 
 :root {
+  --sl-font: 'Mona Sans', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial,
+    sans-serif;
+  --sl-font-mono: 'Commit Mono', ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+
   --sl-color-accent-low: #ece6ff;
   --sl-color-accent: #6a4ce0;
   --sl-color-accent-high: #4a2fb0;
@@ -12,6 +42,20 @@
   --sl-color-accent: #9a80ff;
   --sl-color-accent-high: #d8ccff;
   --sl-color-text-accent: #9a80ff;
+
+  /* Elevation ladder, lifted straight from emito-website's --color-bg* */
+  --sl-color-bg: #08080a;
+  --sl-color-bg-nav: #0e0e11;
+  --sl-color-bg-sidebar: #0e0e11;
+  --sl-color-bg-inline-code: #141418;
+  --sl-color-hairline: rgba(255, 255, 255, 0.07);
+  --sl-color-hairline-light: rgba(255, 255, 255, 0.11);
+  --sl-color-hairline-shade: #08080a;
+
+  /* Warm off-white text, not pure white, matching --color-fg on the site */
+  --sl-color-white: #ecece9;
+  --sl-color-gray-1: #ecece9;
+  --sl-color-gray-2: #ecece9;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -20,5 +64,25 @@
     --sl-color-accent: #9a80ff;
     --sl-color-accent-high: #d8ccff;
     --sl-color-text-accent: #9a80ff;
+
+    --sl-color-bg: #08080a;
+    --sl-color-bg-nav: #0e0e11;
+    --sl-color-bg-sidebar: #0e0e11;
+    --sl-color-bg-inline-code: #141418;
+    --sl-color-hairline: rgba(255, 255, 255, 0.07);
+    --sl-color-hairline-light: rgba(255, 255, 255, 0.11);
+    --sl-color-hairline-shade: #08080a;
+
+    --sl-color-white: #ecece9;
+    --sl-color-gray-1: #ecece9;
+    --sl-color-gray-2: #ecece9;
   }
+}
+
+/* Editorial display voice on content headings, matching the website's h1/h2
+   treatment: size carries the authority, weight eases off instead of going
+   bold, width opens up slightly. */
+.sl-markdown-content :is(h1, h2):not(:where(.not-content *)) {
+  font-variation-settings: 'wght' 500, 'wdth' 105;
+  letter-spacing: -0.02em;
 }
