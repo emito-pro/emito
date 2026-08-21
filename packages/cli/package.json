@@ -46,7 +46,7 @@
 	"dependencies": {
 		"@clack/prompts": "^1.7.0",
 		"@emito/db": "workspace:*",
-		"commander": "^13.0.0",
+		"commander": "^15.0.0",
 		"drizzle-orm": "^0.39.0",
 		"execa": "^9.0.0",
 		"ioredis": "^5.4.0",
