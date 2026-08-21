@@ -75,7 +75,7 @@ Read this before you debug something that's already a known sharp edge.
     polling transport instead.
 13. **Manual `curl` testing needs the `/v1` prefix.** Most routes live under
     `{prefix}/v1/...`; only `/health`, `/metrics`, `/track/*`, `/unsubscribe`,
-    and `/webhooks/:provider` deliberately stay unversioned (see
+    `/confirm`, and `/webhooks/:provider` deliberately stay unversioned (see
     [API versioning](/backend/#api-versioning)). `curl .../emito/preferences`
     404s with `ROUTE_NOT_FOUND`; the real path is `.../emito/v1/preferences`.
     The client SDKs already append `/v1` for you, so this only bites when
