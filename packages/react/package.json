@@ -40,7 +40,7 @@
 		"@emito/js": "workspace:*",
 		"@emito/react-hooks": "workspace:*",
 		"@emito/types": "workspace:*",
-		"@floating-ui/react": "^0.27.0"
+		"@floating-ui/react": "^0.27.20"
 	},
 	"peerDependencies": {
 		"react": ">=18",
