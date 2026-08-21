@@ -1,0 +1,1 @@
+ALTER TABLE "emito_alerts" ADD COLUMN "version" integer DEFAULT 1 NOT NULL;

@@ -1,0 +1,55 @@
+{
+	"name": "@emito/react-native",
+	"version": "0.1.0",
+	"license": "MIT",
+	"description": "React Native hooks for Emito in-app notifications, including push-token registration.",
+	"keywords": ["emito", "notifications", "notification-infrastructure", "self-hosted", "react-native", "hooks", "push-notifications", "mobile"],
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/emito-pro/emito.git",
+		"directory": "packages/react-native"
+	},
+	"homepage": "https://github.com/emito-pro/emito/tree/main/packages/react-native#readme",
+	"bugs": {
+		"url": "https://github.com/emito-pro/emito/issues"
+	},
+	"author": "SFER LABS LLC",
+	"publishConfig": {
+		"access": "public"
+	},
+	"type": "module",
+	"exports": {
+		".": {
+			"types": "./dist/index.d.ts",
+			"import": "./dist/index.js"
+		}
+	},
+	"main": "./dist/index.js",
+	"types": "./dist/index.d.ts",
+	"files": ["dist"],
+	"scripts": {
+		"build": "tsc --project tsconfig.build.json",
+		"test": "vitest run --coverage",
+		"check": "tsc --noEmit",
+		"lint": "biome check src/"
+	},
+	"dependencies": {},
+	"peerDependencies": {
+		"react": ">=18",
+		"react-native": ">=0.72",
+		"@emito/js": ">=0.1.0 <1",
+		"@emito/react-hooks": ">=0.1.0 <1"
+	},
+	"devDependencies": {
+		"@emito/js": "workspace:*",
+		"@emito/react-hooks": "workspace:*",
+		"@testing-library/react": "^16.0.0",
+		"@types/react": "^18.0.0",
+		"@vitest/coverage-v8": "^3.0.0",
+		"jsdom": "^25.0.0",
+		"react": "^18.0.0",
+		"react-dom": "^18.0.0",
+		"typescript": "^5.8.0",
+		"vitest": "^3.0.0"
+	}
+}

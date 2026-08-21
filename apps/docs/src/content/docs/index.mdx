@@ -1,0 +1,47 @@
+---
+title: Emito
+description: A self-hosted notification engine with an in-app inbox, multi-channel delivery, and a preference center you own.
+---
+
+Emito is a **self-hosted notification engine**: an in-app inbox, multi-channel
+delivery (email, SMS, and more), a per-user preference center, and realtime
+push, all running inside your own infrastructure and wired into your app with
+a thin layer of glue code.
+
+The hook: **adding a new notification type is 3 lines.** One event entry, one
+template case, one `emito.send()` call. See [Add a
+notification](/add-a-notification/) for the whole thing.
+
+## What you get
+
+- **In-app inbox**: a notification feed with read/unread state, archive, and
+  realtime updates pushed to the browser.
+- **Multi-channel delivery**: in-app, email, and SMS (and more via provider
+  adapters), each notification routed to the channels its event declares.
+- **Preference center**: subscribers opt in/out per event, per channel,
+  respecting category policy (`always`, `opt_out`, `opt_in`).
+- **Realtime**: SSE (or WebSocket) push so the inbox updates live, no manual
+  refresh.
+
+## What you write vs. what Emito provides
+
+| You write | Emito provides |
+| --- | --- |
+| Config: categories, events, **templates** | The engine (`@emito/core`) |
+| One auth bridge (`resolveSubscriberId` + `/token`) | REST + realtime server (`@emito/server`) |
+| Your `emito.send()` calls | DB schema + repositories (`@emito/db`) |
+| Frontend mount (React components, or `@emito/js` directly if you have no React frontend) | React components (inbox, bell, preference center) |
+| Optional translations (`messages` catalog) | Provider adapters (email/SMS/…) |
+| | JWT auth helpers (`@emito/auth-jwt`) |
+
+## Where to start
+
+1. [Prerequisites](/prerequisites/): what needs to be running.
+2. [Install](/install/) → [Migrate](/migrate/) → [Configure](/configure/) →
+   [Backend](/backend/) → [Frontend](/frontend/) → [Translate the
+   UI](/i18n/): the end-to-end integration guide, in order.
+3. [Gotchas checklist](/gotchas/): read this before you debug something that's
+   already a known sharp edge.
+
+A full working reference implementation (Fastify + Vite React) lives in this
+repo's `apps/demo`.

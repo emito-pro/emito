@@ -1,0 +1,60 @@
+name: Feature request
+description: Suggest a capability, a provider, or a change to how Emito works.
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Describe the **problem you're trying to solve**, not only the solution
+        you have in mind — that leaves room to find the best fit for the engine's
+        existing model (channels, providers, preferences, templates).
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: The problem
+      description: What are you trying to do, and where does Emito get in the way today?
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposal
+    attributes:
+      label: What you'd like to see
+      description: The API, behavior, or package you have in mind — rough sketches are fine.
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives you considered
+      description: Workarounds you tried, and why they fall short.
+    validations:
+      required: false
+
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      description: Which part of the monorepo would this touch?
+      options:
+        - Core engine (@emito/core)
+        - HTTP server / adapters (@emito/server)
+        - A provider plugin (existing or new)
+        - Database / schema (@emito/db)
+        - Templates & i18n (@emito/templates)
+        - Client SDKs (@emito/js, react, react-hooks, react-native)
+        - CLI / installer (@emito/cli)
+        - Documentation
+        - Not sure
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: contribution
+    attributes:
+      label: Contribution
+      options:
+        - label: I'd be willing to implement this.
+          required: false

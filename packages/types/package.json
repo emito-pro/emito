@@ -1,0 +1,44 @@
+{
+	"name": "@emito/types",
+	"version": "0.1.0",
+	"license": "MIT",
+	"description": "Shared types, channel definitions, and schemas for Emito — the base layer every @emito/* package builds on.",
+	"keywords": ["emito", "notifications", "notification-infrastructure", "self-hosted", "typescript", "types", "zod"],
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/emito-pro/emito.git",
+		"directory": "packages/types"
+	},
+	"homepage": "https://github.com/emito-pro/emito/tree/main/packages/types#readme",
+	"bugs": {
+		"url": "https://github.com/emito-pro/emito/issues"
+	},
+	"author": "SFER LABS LLC",
+	"publishConfig": {
+		"access": "public"
+	},
+	"type": "module",
+	"exports": {
+		".": {
+			"types": "./dist/index.d.ts",
+			"import": "./dist/index.js"
+		}
+	},
+	"main": "./dist/index.js",
+	"types": "./dist/index.d.ts",
+	"files": ["dist"],
+	"scripts": {
+		"build": "tsc --project tsconfig.build.json && node ../../scripts/add-js-extensions.mjs dist",
+		"test": "vitest run --coverage",
+		"check": "tsc --noEmit",
+		"lint": "biome check src/"
+	},
+	"dependencies": {
+		"zod": "^3.24.0"
+	},
+	"devDependencies": {
+		"@vitest/coverage-v8": "^3.0.0",
+		"typescript": "^5.8.0",
+		"vitest": "^3.0.0"
+	}
+}

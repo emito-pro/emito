@@ -1,0 +1,30 @@
+{
+  "name": "emito",
+  "private": true,
+  "type": "module",
+  "packageManager": "pnpm@10.23.0",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "build": "turbo run build",
+    "test": "turbo run test",
+    "lint": "turbo run lint",
+    "check": "turbo run check",
+    "demo:init": "turbo run build --filter=!@emito/demo && pnpm --filter @emito/db db:migrate && pnpm --filter @emito/demo seed",
+    "demo:start": "pnpm --filter @emito/demo dev",
+    "docs:dev": "pnpm -C apps/docs dev",
+    "docs:build": "pnpm -C apps/docs build",
+    "docs:preview": "pnpm -C apps/docs preview"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^1.9.0",
+    "turbo": "^2.9.0",
+    "typescript": "^5.8.0"
+  },
+  "pnpm": {
+    "overrides": {
+      "@types/node": "^22.19.19"
+    }
+  }
+}

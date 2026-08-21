@@ -1,0 +1,20 @@
+# Keep the build context lean — nothing here is read by the Dockerfile.
+**/node_modules
+**/dist
+**/coverage
+**/.turbo
+**/.vite
+**/.cache
+**/.next
+**/.storybook-out
+**/storybook-static
+
+# Editor / OS noise
+.DS_Store
+.idea
+.vscode
+*.log
+
+# VCS — never needs to be in the image
+.git
+.gitignore

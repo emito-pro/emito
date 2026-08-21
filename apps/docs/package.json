@@ -1,0 +1,19 @@
+{
+  "name": "@emito/docs",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "serve": "node ./server.mjs"
+  },
+  "dependencies": {
+    "@astrojs/starlight": "^0.41.4",
+    "astro": "^7.1.3"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}

@@ -1,0 +1,151 @@
+/* Toast container — fixed positioning, portal root */
+.container {
+	position: fixed;
+	z-index: var(--emito-toast-z-index, 9999);
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+	padding: 16px;
+	pointer-events: none;
+	font-family: var(--emito-font-family, system-ui, -apple-system, sans-serif);
+	font-size: var(--emito-font-size, 14px);
+}
+
+/* Position variants */
+.topRight {
+	top: 0;
+	right: 0;
+}
+
+.topLeft {
+	top: 0;
+	left: 0;
+}
+
+.bottomRight {
+	bottom: 0;
+	right: 0;
+}
+
+.bottomLeft {
+	bottom: 0;
+	left: 0;
+}
+
+/* Toast item card */
+.item {
+	display: flex;
+	align-items: flex-start;
+	gap: 12px;
+	width: 360px;
+	padding: 12px 16px;
+	background: var(--emito-color-background, #ffffff);
+	border: 1px solid var(--emito-color-border, #e5e7eb);
+	border-radius: var(--emito-border-radius, 8px);
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+	cursor: pointer;
+	pointer-events: auto;
+	position: relative;
+	color: var(--emito-color-foreground, #111827);
+}
+
+.item:hover {
+	background: color-mix(
+		in srgb,
+		var(--emito-color-border, #e5e7eb) 20%,
+		var(--emito-color-background, #ffffff)
+	);
+}
+
+/* Avatar */
+.avatar {
+	width: 32px;
+	height: 32px;
+	border-radius: 50%;
+	object-fit: cover;
+	flex-shrink: 0;
+	background: var(--emito-color-border, #e5e7eb);
+}
+
+.avatarFallback {
+	width: 32px;
+	height: 32px;
+	border-radius: 50%;
+	flex-shrink: 0;
+	background: var(--emito-color-border, #e5e7eb);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	color: var(--emito-color-muted, #6b7280);
+}
+
+/* Content area */
+.content {
+	flex: 1;
+	min-width: 0;
+	padding-right: 20px;
+}
+
+.subject {
+	font-size: 14px;
+	font-weight: 600;
+	color: var(--emito-color-foreground, #111827);
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.body {
+	font-size: 13px;
+	color: var(--emito-color-muted, #6b7280);
+	line-height: 1.4;
+	margin-top: 2px;
+	display: -webkit-box;
+	-webkit-line-clamp: 2;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+}
+
+/* Close button */
+.closeButton {
+	position: absolute;
+	top: 8px;
+	right: 8px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 24px;
+	height: 24px;
+	border: none;
+	border-radius: calc(var(--emito-border-radius, 8px) / 2);
+	background: none;
+	cursor: pointer;
+	color: var(--emito-color-muted, #6b7280);
+	pointer-events: auto;
+	transition: background 0.15s, color 0.15s;
+}
+
+.closeButton:hover {
+	background: var(--emito-color-border, #e5e7eb);
+	color: var(--emito-color-foreground, #111827);
+}
+
+/* Action button */
+.actionButton {
+	margin-top: 8px;
+	padding: 4px 12px;
+	border: 1px solid var(--emito-color-border, #e5e7eb);
+	border-radius: calc(var(--emito-border-radius, 8px) / 2);
+	background: var(--emito-color-background, #ffffff);
+	color: var(--emito-color-primary, #6366f1);
+	font-family: inherit;
+	font-size: 12px;
+	font-weight: 500;
+	cursor: pointer;
+	pointer-events: auto;
+	transition: background 0.15s;
+}
+
+.actionButton:hover {
+	background: color-mix(in srgb, var(--emito-color-primary, #6366f1) 8%, transparent);
+}

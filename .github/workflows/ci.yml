@@ -1,0 +1,115 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+# A new push to a PR cancels the run still in flight for the previous one.
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    name: verify (Node ${{ matrix.node }})
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      matrix:
+        # 22 is the floor declared in `engines`; 24 guards against the next LTS.
+        node: [22, 24]
+    steps:
+      - uses: actions/checkout@v4
+
+      # Installs the pnpm version pinned by `packageManager` in package.json.
+      - uses: pnpm/action-setup@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node }}
+          cache: pnpm
+
+      - name: Install
+        run: pnpm install --frozen-lockfile
+
+      - name: Build
+        run: pnpm build
+
+      - name: Type-check
+        run: pnpm check
+
+      - name: Lint
+        run: pnpm lint
+
+      # Integration suites start Postgres/Redis through testcontainers, which
+      # works on the hosted runners (Docker is present). Where it isn't, those
+      # tests skip themselves rather than fail.
+      #
+      # `--concurrency=1` is what keeps the timeouts meaningful. Turbo's default
+      # is 10, so 21 test packages would launch up to 10 Vitest processes at
+      # once, each spawning its own worker pool sized to the core count — ~20
+      # threads fighting over the 2 vCPUs of a hosted runner. The whole suite is
+      # ~955s of CPU work either way, so serialising the packages costs nothing
+      # in wall-clock (one Vitest at a time still uses every core) while removing
+      # the starvation that made individual tests blow their per-test budget.
+      - name: Test
+        run: pnpm turbo run test --concurrency=1
+
+  docs:
+    name: docs site
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+
+      # `apps/docs` is deliberately outside the pnpm workspace and carries its
+      # own lockfile, so it installs and builds on its own.
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+          cache-dependency-path: apps/docs/pnpm-lock.yaml
+
+      # `--ignore-workspace` is load-bearing: without it pnpm walks up to the
+      # root `pnpm-workspace.yaml`, installs all 22 workspace projects instead
+      # (exit 0!), and leaves `apps/docs/node_modules` absent — so the build
+      # below fails with `astro: not found`.
+      - name: Install
+        run: pnpm -C apps/docs install --ignore-workspace --frozen-lockfile
+
+      - name: Build
+        run: pnpm -C apps/docs build
+
+  commitlint:
+    name: commitlint
+    # PR-only: it lints the commits proposed in a PR against main. A plain
+    # `push` (post-merge, or workflow_dispatch) has no PR base/head SHAs to
+    # compare, and branch protection only needs this check on the PR itself.
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: pnpm/action-setup@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - run: pnpm add -g @commitlint/cli @commitlint/config-conventional
+
+      - run: |
+          echo "module.exports = { extends: ['@commitlint/config-conventional'] };" > commitlint.config.cjs
+          commitlint --from ${{ github.event.pull_request.base.sha }} --to ${{ github.event.pull_request.head.sha }} --config commitlint.config.cjs

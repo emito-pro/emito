@@ -1,0 +1,243 @@
+/* PreferenceCenter grid + toggle + lock + integration styles */
+
+.root {
+	font-family: var(--emito-font-family, system-ui, -apple-system, sans-serif);
+	font-size: var(--emito-font-size, 14px);
+	color: var(--emito-color-foreground, #111827);
+}
+
+.title {
+	margin: 0 0 16px;
+	font-size: 18px;
+	font-weight: 600;
+}
+
+/* Grid (table) */
+
+.grid {
+	width: 100%;
+	border-collapse: collapse;
+	text-align: center;
+}
+
+.columnHeader {
+	padding: 8px 12px;
+	font-size: 12px;
+	font-weight: 600;
+	text-transform: uppercase;
+	letter-spacing: 0.05em;
+	color: var(--emito-color-muted, #6b7280);
+	border-bottom: 1px solid var(--emito-color-border, #e5e7eb);
+}
+
+.columnHeader:first-child {
+	text-align: left;
+}
+
+/* Category header row */
+
+.categoryHeader {
+	padding: 12px 12px 6px;
+	font-size: 13px;
+	font-weight: 600;
+	text-align: left;
+	color: var(--emito-color-foreground, #111827);
+	background: var(--emito-color-background, #ffffff);
+}
+
+/* Topic row */
+
+.row {
+	border-bottom: 1px solid var(--emito-color-border, #e5e7eb);
+}
+
+.row:last-child {
+	border-bottom: none;
+}
+
+.topicLabel {
+	padding: 10px 12px;
+	text-align: left;
+	font-weight: 400;
+}
+
+.cell {
+	padding: 10px 12px;
+	text-align: center;
+	vertical-align: middle;
+}
+
+.notApplicable {
+	color: var(--emito-color-muted, #6b7280);
+	font-size: 13px;
+}
+
+/* Toggle switch */
+
+.toggle {
+	position: relative;
+	display: inline-flex;
+	align-items: center;
+	width: 36px;
+	height: 20px;
+	padding: 0;
+	border: none;
+	border-radius: 10px;
+	background: var(--emito-color-border, #e5e7eb);
+	cursor: pointer;
+	transition: background 0.15s ease;
+}
+
+.toggle:focus-visible {
+	outline: 2px solid var(--emito-color-primary, #6366f1);
+	outline-offset: 2px;
+}
+
+.toggleChecked {
+	background: var(--emito-color-primary, #6366f1);
+}
+
+.toggleDisabled {
+	opacity: 0.5;
+	cursor: not-allowed;
+}
+
+.toggleThumb {
+	position: absolute;
+	left: 2px;
+	width: 16px;
+	height: 16px;
+	border-radius: 50%;
+	background: var(--emito-color-background, #ffffff);
+	transition: transform 0.15s ease;
+	pointer-events: none;
+}
+
+.toggleChecked .toggleThumb {
+	transform: translateX(16px);
+}
+
+/* Lock icon */
+
+.lockIcon {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	color: var(--emito-color-muted, #6b7280);
+}
+
+.lockIconMandatory {
+	opacity: 0.6;
+}
+
+.lockSvg {
+	width: 16px;
+	height: 16px;
+}
+
+/* Unsubscribe button */
+
+.unsubscribeBtn {
+	display: block;
+	margin: 16px 0 0;
+	padding: 8px 16px;
+	border: 1px solid var(--emito-color-border, #e5e7eb);
+	border-radius: var(--emito-border-radius, 8px);
+	background: none;
+	color: var(--emito-color-danger, #dc2626);
+	font-family: var(--emito-font-family, system-ui, -apple-system, sans-serif);
+	font-size: 13px;
+	cursor: pointer;
+}
+
+.unsubscribeBtn:hover {
+	background: var(--emito-color-border, #e5e7eb);
+}
+
+/* IntegrationManager */
+
+.integrations {
+	margin-top: 24px;
+	border-top: 1px solid var(--emito-color-border, #e5e7eb);
+	padding-top: 16px;
+}
+
+.integrationHeader {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	margin-bottom: 12px;
+}
+
+.integrationTitle {
+	margin: 0;
+	font-size: 15px;
+	font-weight: 600;
+}
+
+.integrationAddBtn {
+	padding: 6px 12px;
+	border: 1px solid var(--emito-color-border, #e5e7eb);
+	border-radius: var(--emito-border-radius, 8px);
+	background: none;
+	color: var(--emito-color-primary, #6366f1);
+	font-family: var(--emito-font-family, system-ui, -apple-system, sans-serif);
+	font-size: 13px;
+	cursor: pointer;
+}
+
+.integrationAddBtn:hover {
+	background: var(--emito-color-border, #e5e7eb);
+}
+
+.integrationLoading,
+.integrationEmpty {
+	color: var(--emito-color-muted, #6b7280);
+	font-size: 13px;
+	margin: 0;
+}
+
+.integrationList {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+.integrationItem {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	padding: 8px 0;
+	border-bottom: 1px solid var(--emito-color-border, #e5e7eb);
+}
+
+.integrationItem:last-child {
+	border-bottom: none;
+}
+
+.integrationChannel {
+	font-size: 12px;
+	font-weight: 600;
+	text-transform: uppercase;
+	letter-spacing: 0.05em;
+	color: var(--emito-color-muted, #6b7280);
+	min-width: 60px;
+}
+
+.integrationName {
+	flex: 1;
+}
+
+.integrationRemoveBtn {
+	padding: 4px 8px;
+	border: none;
+	background: none;
+	color: var(--emito-color-danger, #dc2626);
+	font-family: var(--emito-font-family, system-ui, -apple-system, sans-serif);
+	font-size: 12px;
+	cursor: pointer;
+}
+
+.integrationRemoveBtn:hover {
+	text-decoration: underline;
+}

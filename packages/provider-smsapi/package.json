@@ -1,0 +1,49 @@
+{
+	"name": "@emito/provider-smsapi",
+	"version": "0.1.0",
+	"license": "MIT",
+	"description": "SMSAPI SMS provider plugin for Emito.",
+	"keywords": ["emito", "notifications", "notification-infrastructure", "self-hosted", "smsapi", "sms", "provider", "plugin"],
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/emito-pro/emito.git",
+		"directory": "packages/provider-smsapi"
+	},
+	"homepage": "https://github.com/emito-pro/emito/tree/main/packages/provider-smsapi#readme",
+	"bugs": {
+		"url": "https://github.com/emito-pro/emito/issues"
+	},
+	"author": "SFER LABS LLC",
+	"engines": {
+		"node": ">=22"
+	},
+	"publishConfig": {
+		"access": "public"
+	},
+	"type": "module",
+	"exports": {
+		".": {
+			"types": "./dist/index.d.ts",
+			"import": "./dist/index.js"
+		}
+	},
+	"main": "./dist/index.js",
+	"types": "./dist/index.d.ts",
+	"files": ["dist"],
+	"scripts": {
+		"build": "tsc --project tsconfig.build.json",
+		"test": "vitest run --coverage",
+		"check": "tsc --noEmit",
+		"lint": "biome check src/"
+	},
+	"dependencies": {
+		"@emito/provider-kit": "workspace:*",
+		"@emito/types": "workspace:*",
+		"zod": "^3.24.0"
+	},
+	"devDependencies": {
+		"@vitest/coverage-v8": "^3.0.0",
+		"typescript": "^5.8.0",
+		"vitest": "^3.0.0"
+	}
+}

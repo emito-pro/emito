@@ -1,0 +1,15 @@
+:root {
+	--emito-color-primary: #6366f1;
+	--emito-color-background: #ffffff;
+	--emito-color-foreground: #111827;
+	--emito-color-muted: #6b7280;
+	--emito-color-border: #e5e7eb;
+	--emito-color-unread: #3b82f6;
+	--emito-color-danger: #dc2626;
+	--emito-color-success: #16a34a;
+	--emito-font-family: system-ui, -apple-system, sans-serif;
+	--emito-font-size: 14px;
+	--emito-border-radius: 8px;
+	--emito-inbox-width: 400px;
+	--emito-inbox-max-height: 480px;
+}

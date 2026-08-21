@@ -1,0 +1,2 @@
+ALTER TABLE "emito_preferences" DROP CONSTRAINT "emito_preferences_sub_ws_topic_channel_unique";--> statement-breakpoint
+ALTER TABLE "emito_preferences" ADD CONSTRAINT "emito_preferences_sub_ws_topic_channel_unique" UNIQUE NULLS NOT DISTINCT("subscriber_id","workspace_id","topic_key","channel");

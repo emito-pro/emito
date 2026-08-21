@@ -1,0 +1,424 @@
+/* NotificationFeed — scrollable container */
+.feed {
+	display: flex;
+	flex-direction: column;
+	width: var(--emito-inbox-width, 400px);
+	max-height: var(--emito-inbox-max-height, 480px);
+	overflow-y: auto;
+	background: var(--emito-color-background, #ffffff);
+	font-family: var(--emito-font-family, system-ui, -apple-system, sans-serif);
+	font-size: var(--emito-font-size, 14px);
+	color: var(--emito-color-foreground, #111827);
+}
+
+/* Tab bar */
+.tabBar {
+	display: flex;
+	gap: 0;
+	border-bottom: 1px solid var(--emito-color-border, #e5e7eb);
+	padding: 0 12px;
+	flex-shrink: 0;
+}
+
+.tab {
+	padding: 8px 12px;
+	border: none;
+	background: none;
+	cursor: pointer;
+	font-family: inherit;
+	font-size: 13px;
+	font-weight: 500;
+	color: var(--emito-color-muted, #6b7280);
+	border-bottom: 2px solid transparent;
+	transition: color 0.15s, border-color 0.15s;
+}
+
+.tab:hover {
+	color: var(--emito-color-foreground, #111827);
+}
+
+.tabActive {
+	color: var(--emito-color-primary, #6366f1);
+	border-bottom-color: var(--emito-color-primary, #6366f1);
+}
+
+/* Notification list */
+.list {
+	flex: 1;
+	overflow-y: auto;
+}
+
+/* NotificationItem — single row */
+.item {
+	display: flex;
+	align-items: flex-start;
+	gap: 12px;
+	padding: 12px 16px;
+	border-bottom: 1px solid var(--emito-color-border, #e5e7eb);
+	cursor: pointer;
+	position: relative;
+	transition: background 0.15s;
+}
+
+.item:hover {
+	background: color-mix(in srgb, var(--emito-color-border, #e5e7eb) 30%, transparent);
+}
+
+.item:last-child {
+	border-bottom: none;
+}
+
+/* Avatar */
+.avatar {
+	width: 36px;
+	height: 36px;
+	border-radius: 50%;
+	object-fit: cover;
+	flex-shrink: 0;
+	background: var(--emito-color-border, #e5e7eb);
+}
+
+.avatarFallback {
+	width: 36px;
+	height: 36px;
+	border-radius: 50%;
+	flex-shrink: 0;
+	background: var(--emito-color-border, #e5e7eb);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	color: var(--emito-color-muted, #6b7280);
+}
+
+/* Content area */
+.content {
+	flex: 1;
+	min-width: 0;
+}
+
+.header {
+	display: flex;
+	align-items: baseline;
+	justify-content: space-between;
+	gap: 8px;
+}
+
+.subject {
+	font-size: 14px;
+	font-weight: 400;
+	color: var(--emito-color-foreground, #111827);
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.subjectUnread {
+	font-weight: 600;
+}
+
+.timestamp {
+	font-size: 12px;
+	color: var(--emito-color-muted, #6b7280);
+	white-space: nowrap;
+	flex-shrink: 0;
+}
+
+.body {
+	font-size: 13px;
+	color: var(--emito-color-muted, #6b7280);
+	line-height: 1.4;
+	margin-top: 2px;
+	display: -webkit-box;
+	-webkit-line-clamp: 2;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+}
+
+/* Unread dot */
+.unreadDot {
+	width: 8px;
+	height: 8px;
+	border-radius: 50%;
+	background: var(--emito-color-unread, #3b82f6);
+	flex-shrink: 0;
+	margin-top: 6px;
+}
+
+/* Action buttons */
+.actions {
+	display: flex;
+	gap: 8px;
+	margin-top: 8px;
+}
+
+.actionButton {
+	padding: 4px 12px;
+	border: 1px solid var(--emito-color-border, #e5e7eb);
+	border-radius: calc(var(--emito-border-radius, 8px) / 2);
+	background: var(--emito-color-background, #ffffff);
+	color: var(--emito-color-primary, #6366f1);
+	font-family: inherit;
+	font-size: 12px;
+	font-weight: 500;
+	cursor: pointer;
+	transition: background 0.15s;
+}
+
+.actionButton:hover {
+	background: color-mix(in srgb, var(--emito-color-primary, #6366f1) 8%, transparent);
+}
+
+/* Overflow menu trigger */
+.overflowTrigger {
+	position: absolute;
+	top: 8px;
+	right: 8px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 28px;
+	height: 28px;
+	border: none;
+	border-radius: calc(var(--emito-border-radius, 8px) / 2);
+	background: none;
+	cursor: pointer;
+	color: var(--emito-color-muted, #6b7280);
+	opacity: 0;
+	transition: opacity 0.15s, background 0.15s;
+}
+
+.item:hover .overflowTrigger {
+	opacity: 1;
+}
+
+.overflowTrigger:hover {
+	background: var(--emito-color-border, #e5e7eb);
+}
+
+/* Overflow menu panel */
+.overflowMenu {
+	background: var(--emito-color-background, #ffffff);
+	border: 1px solid var(--emito-color-border, #e5e7eb);
+	border-radius: var(--emito-border-radius, 8px);
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+	padding: 4px 0;
+	min-width: 160px;
+	z-index: 50;
+}
+
+.overflowMenuItem {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	width: 100%;
+	padding: 8px 12px;
+	border: none;
+	background: none;
+	cursor: pointer;
+	font-family: inherit;
+	font-size: 13px;
+	color: var(--emito-color-foreground, #111827);
+	text-align: left;
+	transition: background 0.15s;
+}
+
+.overflowMenuItem:hover {
+	background: color-mix(in srgb, var(--emito-color-border, #e5e7eb) 50%, transparent);
+}
+
+/* Snooze picker */
+.snoozePicker {
+	border-top: 1px solid var(--emito-color-border, #e5e7eb);
+	padding: 4px 0;
+}
+
+.snoozePickerLabel {
+	padding: 6px 12px;
+	font-size: 11px;
+	font-weight: 600;
+	color: var(--emito-color-muted, #6b7280);
+	text-transform: uppercase;
+	letter-spacing: 0.05em;
+}
+
+.snoozeOption {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	width: 100%;
+	padding: 8px 12px;
+	border: none;
+	background: none;
+	cursor: pointer;
+	font-family: inherit;
+	font-size: 13px;
+	color: var(--emito-color-foreground, #111827);
+	text-align: left;
+	transition: background 0.15s;
+}
+
+.snoozeOption:hover {
+	background: color-mix(in srgb, var(--emito-color-border, #e5e7eb) 50%, transparent);
+}
+
+/* Loading skeleton */
+.skeleton {
+	display: flex;
+	align-items: flex-start;
+	gap: 12px;
+	padding: 12px 16px;
+	border-bottom: 1px solid var(--emito-color-border, #e5e7eb);
+}
+
+.skeletonAvatar {
+	width: 36px;
+	height: 36px;
+	border-radius: 50%;
+	background: var(--emito-color-border, #e5e7eb);
+	animation: shimmer 1.5s infinite;
+}
+
+.skeletonLine {
+	height: 12px;
+	border-radius: 6px;
+	background: var(--emito-color-border, #e5e7eb);
+	animation: shimmer 1.5s infinite;
+}
+
+.skeletonLineShort {
+	width: 60%;
+}
+
+.skeletonLineLong {
+	width: 85%;
+	margin-top: 8px;
+}
+
+.skeletonLineMedium {
+	width: 40%;
+	margin-top: 6px;
+}
+
+.skeletonContent {
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+}
+
+@keyframes shimmer {
+	0% {
+		opacity: 1;
+	}
+	50% {
+		opacity: 0.4;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+
+/* Empty state */
+.emptyState {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	padding: 48px 24px;
+	text-align: center;
+}
+
+.emptyStateIcon {
+	width: 48px;
+	height: 48px;
+	color: var(--emito-color-muted, #6b7280);
+	margin-bottom: 16px;
+	opacity: 0.5;
+}
+
+.emptyStateTitle {
+	font-size: 15px;
+	font-weight: 600;
+	color: var(--emito-color-foreground, #111827);
+	margin: 0 0 8px;
+}
+
+.emptyStateMessage {
+	font-size: 13px;
+	color: var(--emito-color-muted, #6b7280);
+	line-height: 1.5;
+	margin: 0;
+	max-width: 240px;
+}
+
+/* NotificationInbox — assembled container */
+.inboxRoot {
+	display: flex;
+	flex-direction: column;
+	width: var(--emito-inbox-width, 400px);
+	max-height: var(--emito-inbox-max-height, 480px);
+	background: var(--emito-color-background, #ffffff);
+	border-radius: var(--emito-border-radius, 8px);
+	overflow: hidden;
+}
+
+.inboxHeader {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 12px 16px;
+	border-bottom: 1px solid var(--emito-color-border, #e5e7eb);
+	flex-shrink: 0;
+}
+
+.inboxTitle {
+	font-family: var(--emito-font-family, system-ui, -apple-system, sans-serif);
+	font-size: 16px;
+	font-weight: 600;
+	color: var(--emito-color-foreground, #111827);
+	margin: 0;
+}
+
+.inboxMarkAllButton {
+	border: none;
+	background: none;
+	cursor: pointer;
+	font-family: var(--emito-font-family, system-ui, -apple-system, sans-serif);
+	font-size: 13px;
+	font-weight: 500;
+	color: var(--emito-color-primary, #6366f1);
+	padding: 4px 8px;
+	border-radius: calc(var(--emito-border-radius, 8px) / 2);
+	transition: background 0.15s;
+}
+
+.inboxMarkAllButton:hover {
+	background: color-mix(in srgb, var(--emito-color-primary, #6366f1) 8%, transparent);
+}
+
+.inboxFooter {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 10px 16px;
+	border-top: 1px solid var(--emito-color-border, #e5e7eb);
+	flex-shrink: 0;
+}
+
+.inboxPreferencesLink {
+	display: inline-flex;
+	align-items: center;
+	gap: 6px;
+	border: none;
+	background: none;
+	cursor: pointer;
+	font-family: var(--emito-font-family, system-ui, -apple-system, sans-serif);
+	font-size: 13px;
+	color: var(--emito-color-muted, #6b7280);
+	text-decoration: none;
+	padding: 0;
+	transition: color 0.15s;
+}
+
+.inboxPreferencesLink:hover {
+	color: var(--emito-color-foreground, #111827);
+}

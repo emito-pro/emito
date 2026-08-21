@@ -1,0 +1,72 @@
+name: Bug report
+description: Something in Emito behaves differently than documented or expected.
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to file this. A reproduction that fails
+        deterministically is the single most helpful thing you can attach.
+
+        **Found a security vulnerability?** Don't file it here — see
+        [SECURITY.md](https://github.com/emito-pro/emito/blob/main/SECURITY.md)
+        for the private channel.
+
+  - type: checkboxes
+    id: preflight
+    attributes:
+      label: Preflight
+      options:
+        - label: I searched the existing issues and this isn't a duplicate.
+          required: true
+
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened
+      description: What you observed, and what you expected instead.
+      placeholder: |
+        `emito.send()` with a suppressed subscriber returns "sent" instead of a
+        blocked outcome. I expected the preference gate to record it as blocked.
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Steps to reproduce
+      description: A minimal snippet or a failing test beats prose.
+      placeholder: |
+        1. Configure `createEmito({ ... })` with the in-app channel only
+        2. Call `send({ ... })`
+        3. Observe …
+      render: text
+    validations:
+      required: true
+
+  - type: input
+    id: packages
+    attributes:
+      label: Packages and versions
+      description: Which `@emito/*` packages are involved, and at what versions.
+      placeholder: "@emito/core 1.0.0, @emito/server 1.0.0"
+    validations:
+      required: true
+
+  - type: input
+    id: environment
+    attributes:
+      label: Environment
+      description: Node version, package manager, OS, and (if relevant) the framework you mount on.
+      placeholder: "Node 22.14, pnpm 10.23, macOS 15, Fastify 5"
+    validations:
+      required: true
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: Logs / stack trace
+      description: Paste any relevant output, with secrets redacted.
+      render: shell
+    validations:
+      required: false

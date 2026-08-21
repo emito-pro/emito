@@ -1,0 +1,43 @@
+.root {
+	position: relative;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	padding: 6px;
+	border: none;
+	background: none;
+	cursor: pointer;
+	color: var(--emito-color-foreground, #111827);
+	border-radius: var(--emito-border-radius, 8px);
+}
+
+.root:hover {
+	background: var(--emito-color-border, #e5e7eb);
+}
+
+.icon {
+	width: 24px;
+	height: 24px;
+	color: inherit;
+}
+
+.badge {
+	position: absolute;
+	top: 0;
+	right: 0;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	min-width: 18px;
+	height: 18px;
+	padding: 0 5px;
+	border-radius: 9px;
+	background: var(--emito-color-primary, #6366f1);
+	color: var(--emito-color-background, #ffffff);
+	font-family: var(--emito-font-family, system-ui, -apple-system, sans-serif);
+	font-size: 11px;
+	font-weight: 600;
+	line-height: 1;
+	pointer-events: none;
+	transform: translate(25%, -25%);
+}

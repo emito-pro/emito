@@ -1,0 +1,6 @@
+# Playwright E2E artifacts — never commit the captured session/CSRF cookies or
+# run output. The suite regenerates these on every run (see playwright.config.ts).
+tests/e2e/.auth/
+test-results/
+playwright-report/
+.last-run.json

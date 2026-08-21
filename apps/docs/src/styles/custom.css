@@ -1,0 +1,24 @@
+/* Emito docs — violet accent, matching emito-website's brand color. */
+
+:root {
+  --sl-color-accent-low: #ece6ff;
+  --sl-color-accent: #6a4ce0;
+  --sl-color-accent-high: #4a2fb0;
+  --sl-color-text-accent: #6a4ce0;
+}
+
+:root[data-theme='dark'] {
+  --sl-color-accent-low: #241a4d;
+  --sl-color-accent: #9a80ff;
+  --sl-color-accent-high: #d8ccff;
+  --sl-color-text-accent: #9a80ff;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) {
+    --sl-color-accent-low: #241a4d;
+    --sl-color-accent: #9a80ff;
+    --sl-color-accent-high: #d8ccff;
+    --sl-color-text-accent: #9a80ff;
+  }
+}

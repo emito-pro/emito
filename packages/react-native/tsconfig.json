@@ -1,0 +1,10 @@
+{
+	"extends": "../../tsconfig.base.json",
+	"compilerOptions": {
+		"outDir": "dist",
+		"rootDir": ".",
+		"jsx": "react-jsx",
+		"types": ["vitest/importMeta"]
+	},
+	"include": ["src", "__tests__"]
+}

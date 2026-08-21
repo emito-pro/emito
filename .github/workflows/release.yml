@@ -1,0 +1,72 @@
+name: Release
+
+on:
+  push:
+    tags: ["v*"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  release:
+    name: build, publish, release
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    permissions:
+      contents: write # create the GitHub Release and upload tarballs
+      id-token: write # npm provenance
+    env:
+      # Lifted to the job so the publish step can test it in an `if:` — the
+      # `secrets` context is not available in step conditions.
+      NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+          registry-url: https://registry.npmjs.org
+
+      - name: Install
+        run: pnpm install --frozen-lockfile
+
+      - name: Build
+        run: pnpm build
+
+      # A tag that fails the same gate a PR has to pass should never ship.
+      - name: Type-check
+        run: pnpm check
+
+      - name: Test
+        run: pnpm test
+
+      # Tarballs for consumers installing straight from the Release, before the
+      # packages exist on npm. Also a dry run of what publishing would upload.
+      - name: Pack release tarballs
+        run: node scripts/pack-release.mjs
+
+      - name: Publish to npm
+        # Skipped until an NPM_TOKEN secret exists, so tagging a release is safe
+        # before the registry decision is executed. `--no-git-checks` is required
+        # because the workflow runs on a detached tag checkout.
+        if: ${{ env.NPM_TOKEN != '' }}
+        env:
+          NODE_AUTH_TOKEN: ${{ env.NPM_TOKEN }}
+        run: pnpm publish -r --access public --no-git-checks --provenance
+
+      - name: Create GitHub Release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: ${{ github.ref_name }}
+        run: |
+          if gh release view "$TAG" >/dev/null 2>&1; then
+            gh release upload "$TAG" dist-tarballs/*.tgz --clobber
+          else
+            gh release create "$TAG" dist-tarballs/*.tgz \
+              --title "$TAG" \
+              --generate-notes
+          fi

@@ -1,0 +1,1 @@
+CREATE INDEX "idx_emito_lmb_list_created" ON "emito_list_members" USING btree ("list_id","created_at" DESC NULLS LAST);

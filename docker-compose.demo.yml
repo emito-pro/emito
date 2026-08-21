@@ -1,0 +1,82 @@
+# Full-stack LOCAL demo of the integrated Emito platform: the trading showcase app
+# plus its own PostgreSQL + Redis. Self-contained — `docker compose -f
+# docker-compose.demo.yml up` brings the whole thing online (migrations + seed run
+# on boot).
+#
+#   App        http://localhost:3100            (trading UI + /api/* + /emito/*)
+#   Postgres   localhost:5434  (db emito_demo, user/pass emito/emito)
+#   Redis      localhost:6381
+#
+# A dedicated compose project name keeps this stack isolated (no container/network/
+# volume collisions); host ports 3100/5434/6381 are chosen to avoid colliding with
+# the dev stacks (3001/5432/6379).
+name: emito-demo
+
+services:
+  demo-pg:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: emito
+      POSTGRES_PASSWORD: emito
+      POSTGRES_DB: emito_demo
+    ports:
+      - "5434:5432"
+    volumes:
+      - demo-pg-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U emito -d emito_demo"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+      start_period: 10s
+
+  demo-redis:
+    image: redis:7-alpine
+    ports:
+      - "6381:6379"
+    volumes:
+      - demo-redis-data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+      start_period: 5s
+
+  demo-app:
+    build:
+      context: .
+      dockerfile: apps/demo/Dockerfile
+    ports:
+      - "3100:3001"
+    depends_on:
+      demo-pg:
+        condition: service_healthy
+      demo-redis:
+        condition: service_healthy
+    environment:
+      NODE_ENV: production
+      PORT: "3001"
+      # Service-name DNS on the compose network; container-internal ports.
+      DATABASE_URL: postgres://emito:emito@demo-pg:5432/emito_demo
+      REDIS_URL: redis://demo-redis:6379
+      # Apply the @emito/db migrations and seed the demo fixtures on every boot
+      # (both idempotent). Default-off elsewhere so local dev behaviour is unchanged.
+      RUN_MIGRATIONS_ON_BOOT: "true"
+      SEED_ON_BOOT: "true"
+      # LOCAL DEMO ONLY secrets — safe to commit; these are NOT production values and
+      # are documented as demo defaults. Override via your own env for any real use.
+      JWT_SECRET: "demo-jwt-secret-change-in-production"
+      EMITO_API_KEY: "demo-api-key-change-in-production"
+    healthcheck:
+      # `/api/users` is a static, dependency-free demo endpoint — a 200 here proves
+      # the Express app booted (migrations + seed + Emito start all completed first).
+      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost:3001/api/users"]
+      interval: 10s
+      timeout: 5s
+      retries: 12
+      start_period: 60s
+
+volumes:
+  demo-pg-data:
+  demo-redis-data:

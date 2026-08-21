@@ -1,0 +1,72 @@
+{
+	"name": "@emito/cli",
+	"version": "0.1.0",
+	"description": "Installer CLI for Emito — detects your stack, installs the @emito/* packages, migrates the schema, and generates the backend glue files.",
+	"keywords": ["emito", "cli", "notifications", "installer"],
+	"license": "MIT",
+	"author": "SFER LABS LLC",
+	"publishConfig": {
+		"access": "public"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/emito-pro/emito.git",
+		"directory": "packages/cli"
+	},
+	"bugs": {
+		"url": "https://github.com/emito-pro/emito/issues"
+	},
+	"homepage": "https://github.com/emito-pro/emito/tree/main/packages/cli#readme",
+	"engines": {
+		"node": ">=22"
+	},
+	"type": "module",
+	"bin": {
+		"emito": "./dist/index.js"
+	},
+	"exports": {
+		".": {
+			"types": "./dist/cli.d.ts",
+			"import": "./dist/cli.js"
+		}
+	},
+	"main": "./dist/cli.js",
+	"types": "./dist/cli.d.ts",
+	"files": [
+		"dist",
+		"skill-template"
+	],
+	"scripts": {
+		"build": "tsc --project tsconfig.build.json",
+		"test": "vitest run --coverage",
+		"test:e2e": "vitest run --config vitest.e2e.config.ts",
+		"check": "tsc --noEmit",
+		"lint": "biome check src/"
+	},
+	"dependencies": {
+		"@clack/prompts": "^1.7.0",
+		"@emito/db": "workspace:*",
+		"commander": "^13.0.0",
+		"drizzle-orm": "^0.39.0",
+		"execa": "^9.0.0",
+		"ioredis": "^5.4.0",
+		"postgres": "^3.4.0"
+	},
+	"devDependencies": {
+		"@emito/auth-jwt": "workspace:*",
+		"@emito/core": "workspace:*",
+		"@emito/provider-resend": "workspace:*",
+		"@emito/provider-smsapi": "workspace:*",
+		"@emito/server": "workspace:*",
+		"@testcontainers/postgresql": "^10.0.0",
+		"@testcontainers/redis": "^10.0.0",
+		"@types/express": "^5.0.6",
+		"@types/node": "^22.19.19",
+		"@vitest/coverage-v8": "^3.0.0",
+		"express": "^5.2.1",
+		"fastify": "^5.8.4",
+		"hono": "^4.9.0",
+		"typescript": "^5.8.0",
+		"vitest": "^3.0.0"
+	}
+}

@@ -1,0 +1,28 @@
+node_modules/
+dist/
+coverage/
+.turbo/
+*.tsbuildinfo
+
+# Release tarball output (scripts/pack-release.mjs, run by the release
+# workflow) — built on demand, never committed.
+dist-tarballs/
+
+# Local agent/editor config — never shipped, restored on main's private
+# layer via `git add -f` (see PLAN-OSS-WORKFLOW.md).
+.claude/
+CLAUDE.md
+AGENTS.md
+.cursor/
+
+.DS_Store
+.idea/
+.env
+
+# Astro build cache (apps/docs)
+.astro/
+
+# CLI e2e test fixtures (packages/cli/src/__tests__/e2e/init.e2e.test.ts), in case
+# cleanup doesn't run (e.g. a crashed test process)
+packages/cli/src/__tests__/e2e/.fixture-*
+packages/cli/src/__tests__/e2e/.typecheck-*
