@@ -40,7 +40,7 @@
 		"@emito/types": "workspace:*",
 		"ioredis": "^5.4.0",
 		"@opentelemetry/api": "^1.9.0",
-		"pino": "^9.6.0",
+		"pino": "^10.3.1",
 		"prom-client": "^15.1.0",
 		"zod": "^3.24.0"
 	},
