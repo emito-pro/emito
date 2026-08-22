@@ -27,9 +27,11 @@ get back a normalized `DeliveryResult`.
 
 ## Install
 
-`@emito/provider-resend` is a workspace package in the Emito monorepo and is not
-yet published to npm. Inside the monorepo, depend on it with the workspace
-protocol and add `resend`, which is required at runtime:
+```bash
+npm install @emito/provider-resend resend
+```
+
+Working inside the Emito monorepo instead? Use the workspace protocol:
 
 ```jsonc
 // package.json
@@ -41,9 +43,9 @@ protocol and add `resend`, which is required at runtime:
 }
 ```
 
-`resend` is the official Resend SDK. The plugin is designed to be registered with
-the Emito core engine alongside other channel providers. Standalone publishing to
-npm is planned.
+`resend` (the official Resend SDK) is required at runtime. The plugin is
+designed to be registered with the Emito core engine alongside other channel
+providers.
 
 ## Usage
 

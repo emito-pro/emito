@@ -28,8 +28,11 @@ using Node's built-in `crypto` (HMAC-SHA256) and ships a ready-made
 
 ## Install
 
-`@emito/auth-jwt` is a workspace package in the Emito monorepo and is not yet
-published to npm. Inside the monorepo, depend on it with the workspace protocol:
+```bash
+npm install @emito/auth-jwt
+```
+
+Working inside the Emito monorepo instead? Use the workspace protocol:
 
 ```jsonc
 // package.json
@@ -41,8 +44,7 @@ published to npm. Inside the monorepo, depend on it with the workspace protocol:
 ```
 
 Runtime is Node.js (the package relies on the `node:crypto` module). No other
-runtime dependencies are required beyond `@emito/types`, which resolves through
-the workspace. Standalone publishing to npm is planned.
+runtime dependencies are required beyond `@emito/types`.
 
 ## Usage
 

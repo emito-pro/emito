@@ -29,8 +29,11 @@ soft-delete filtering, and transactions.
 
 ## Install
 
-`@emito/db` is a workspace package in the Emito monorepo and is not yet
-published to npm. Inside the monorepo, depend on it with the workspace protocol:
+```bash
+npm install @emito/db
+```
+
+Working inside the Emito monorepo instead? Use the workspace protocol:
 
 ```jsonc
 // package.json
@@ -44,7 +47,7 @@ published to npm. Inside the monorepo, depend on it with the workspace protocol:
 `@emito/db` depends on `drizzle-orm` and the `postgres` driver (both bundled as
 direct dependencies) and on `@emito/types`. The repository classes implement
 interfaces from `@emito/core`, so a consuming package typically depends on that
-alongside it. Standalone publishing to npm is planned.
+alongside it.
 
 ## Usage
 

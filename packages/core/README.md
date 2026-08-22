@@ -29,8 +29,11 @@ Prometheus metrics, and OpenTelemetry traces.
 
 ## Install
 
-`@emito/core` is a workspace package in the Emito monorepo and is not yet
-published to npm. Inside the monorepo, depend on it with the workspace protocol:
+```bash
+npm install @emito/core
+```
+
+Working inside the Emito monorepo instead? Use the workspace protocol:
 
 ```jsonc
 // package.json
@@ -45,7 +48,6 @@ published to npm. Inside the monorepo, depend on it with the workspace protocol:
 `pino` (logging), `prom-client` (metrics), `@opentelemetry/api` (tracing), and
 `ioredis`. Redis is optional at runtime — rate limiting, circuit breaking, the
 digest engine, and broadcast scheduling activate only when you pass a `redisClient`.
-Standalone publishing to npm is planned.
 
 ## Usage
 

@@ -28,8 +28,11 @@ This package is the foundation the higher-level React layers build on
 
 ## Install
 
-`@emito/js` is a workspace package in the Emito monorepo and is not yet
-published to npm. Inside the monorepo, depend on it with the workspace protocol:
+```bash
+npm install @emito/js
+```
+
+Working inside the Emito monorepo instead? Use the workspace protocol:
 
 ```jsonc
 // package.json
@@ -40,9 +43,8 @@ published to npm. Inside the monorepo, depend on it with the workspace protocol:
 }
 ```
 
-Its only runtime dependency is `@emito/types`, the shared type layer, which
-resolves through the workspace. TypeScript declarations ship with the package —
-no separate `@types` install is needed. Standalone publishing to npm is planned.
+Its only runtime dependency is `@emito/types`, the shared type layer. TypeScript
+declarations ship with the package — no separate `@types` install is needed.
 
 ## Usage
 

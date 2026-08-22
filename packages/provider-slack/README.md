@@ -27,9 +27,11 @@ to retry.
 
 ## Install
 
-`@emito/provider-slack` is a workspace package in the Emito monorepo and is not
-yet published to npm. Inside the monorepo, depend on it with the workspace
-protocol:
+```bash
+npm install @emito/provider-slack
+```
+
+Working inside the Emito monorepo instead? Use the workspace protocol:
 
 ```jsonc
 // package.json
@@ -40,8 +42,7 @@ protocol:
 }
 ```
 
-`@emito/types` is a workspace dependency and resolves through the workspace.
-Standalone publishing to npm is planned.
+Its only runtime dependency is `@emito/types`, the shared type layer.
 
 ## Usage
 
