@@ -244,21 +244,6 @@ It detects your package manager and backend framework, installs the right
 `emito agent-skill` installs a skill that runs the CLI *and* wires the mount
 call into your entrypoint.
 
-> `npx` is the intended path **once `@emito/*` is published to npm**, which
-> hasn't happened yet. Until it does, every package ships as a tarball on each
-> [GitHub Release](https://github.com/emito-pro/emito/releases) and installs
-> straight from its URL:
->
-> ```sh
-> pnpm add -D https://github.com/emito-pro/emito/releases/download/v0.1.0/emito-cli-0.1.0.tgz
-> pnpm exec emito init
-> ```
->
-> The packages the CLI installs need one `overrides` block pointing at the same
-> release — the [install page](https://docs.emito.io/install/) has it ready to
-> paste, and the [CLI README](./packages/cli/README.md#install) covers running
-> from a checkout instead.
-
 ### Run the monorepo locally
 
 ```sh

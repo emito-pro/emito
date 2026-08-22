@@ -24,9 +24,11 @@ posting each message to the bot's `sendMessage` endpoint with `parse_mode: "HTML
 
 ## Install
 
-`@emito/provider-telegram` is a workspace package in the Emito monorepo and is
-not yet published to npm. Inside the monorepo, depend on it with the workspace
-protocol:
+```bash
+npm install @emito/provider-telegram
+```
+
+Working inside the Emito monorepo instead? Use the workspace protocol:
 
 ```jsonc
 // package.json
@@ -38,9 +40,7 @@ protocol:
 ```
 
 The package depends on `@emito/types` for the shared provider and delivery
-contracts, which resolves through the workspace. It has no other runtime
-dependencies and uses the platform `fetch`. Standalone publishing to npm is
-planned.
+contracts. It has no other runtime dependencies and uses the platform `fetch`.
 
 ## Usage
 

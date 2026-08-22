@@ -32,24 +32,9 @@ It ships one binary, `emito`, with two commands:
 
 ## Install
 
-`@emito/cli` is **not yet published to npm**. Once it is, the intended usage is:
-
 ```bash
 npx @emito/cli@latest init
 ```
-
-Until then, install it from the tarball attached to a
-[GitHub Release](https://github.com/emito-pro/emito/releases) — the repo is
-public, so the URL resolves directly:
-
-```bash
-pnpm add -D https://github.com/emito-pro/emito/releases/download/v0.1.0/emito-cli-0.1.0.tgz
-pnpm exec emito init
-```
-
-The `@emito/*` packages the CLI then installs have to resolve too, which needs
-one `overrides` block pointing at the same release — the
-[install page](https://docs.emito.io/install/) has the copy-pasteable version.
 
 Working from a checkout of the monorepo instead? Build and invoke it directly:
 

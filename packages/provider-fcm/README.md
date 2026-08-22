@@ -28,9 +28,11 @@ normalized `DeliveryResult`.
 
 ## Install
 
-`@emito/provider-fcm` is a workspace package in the Emito monorepo and is not yet
-published to npm. Inside the monorepo, depend on it with the workspace protocol
-and add `firebase-admin`, which is required at runtime:
+```bash
+npm install @emito/provider-fcm firebase-admin
+```
+
+Working inside the Emito monorepo instead? Use the workspace protocol:
 
 ```jsonc
 // package.json
@@ -42,9 +44,9 @@ and add `firebase-admin`, which is required at runtime:
 }
 ```
 
-`firebase-admin` is the official Firebase Admin SDK. The plugin is designed to be
-registered with the Emito core engine alongside other channel providers.
-Standalone publishing to npm is planned.
+`firebase-admin` (the official Firebase Admin SDK) is required at runtime. The
+plugin is designed to be registered with the Emito core engine alongside other
+channel providers.
 
 ## Usage
 
