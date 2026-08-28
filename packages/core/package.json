@@ -38,7 +38,7 @@
 	},
 	"dependencies": {
 		"@emito/types": "workspace:*",
-		"ioredis": "^5.4.0",
+		"ioredis": "^6.0.0",
 		"@opentelemetry/api": "^1.9.0",
 		"pino": "^9.6.0",
 		"prom-client": "^15.1.0",
