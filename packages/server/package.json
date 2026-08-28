@@ -59,7 +59,7 @@
 	"dependencies": {
 		"@emito/core": "workspace:*",
 		"@emito/types": "workspace:*",
-		"ws": "^8.20.0",
+		"ws": "^8.21.3",
 		"zod": "^3.24.0"
 	},
 	"devDependencies": {
