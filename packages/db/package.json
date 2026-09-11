@@ -42,8 +42,8 @@
 	},
 	"dependencies": {
 		"@emito/types": "workspace:*",
-		"drizzle-orm": "^0.39.0",
-		"postgres": "^3.4.0",
+		"drizzle-orm": "^0.45.2",
+		"postgres": "^3.4.9",
 		"uuidv7": "^1.0.0"
 	},
 	"devDependencies": {
