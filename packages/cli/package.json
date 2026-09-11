@@ -58,7 +58,7 @@
 		"@emito/provider-resend": "workspace:*",
 		"@emito/provider-smsapi": "workspace:*",
 		"@emito/server": "workspace:*",
-		"@testcontainers/postgresql": "^10.0.0",
+		"@testcontainers/postgresql": "^12.1.0",
 		"@testcontainers/redis": "^10.0.0",
 		"@types/express": "^5.0.6",
 		"@types/node": "^22.19.19",
