@@ -44,13 +44,13 @@
 		"lint": "biome check src/"
 	},
 	"dependencies": {
-		"@clack/prompts": "^1.7.0",
+		"@clack/prompts": "^1.8.0",
 		"@emito/db": "workspace:*",
 		"commander": "^13.0.0",
-		"drizzle-orm": "^0.39.0",
+		"drizzle-orm": "^0.45.2",
 		"execa": "^9.0.0",
 		"ioredis": "^5.4.0",
-		"postgres": "^3.4.0"
+		"postgres": "^3.4.9"
 	},
 	"devDependencies": {
 		"@emito/auth-jwt": "workspace:*",
