@@ -47,7 +47,7 @@
 		"react-dom": ">=18"
 	},
 	"devDependencies": {
-		"@testing-library/jest-dom": "^6.0.0",
+		"@testing-library/jest-dom": "^7.0.1",
 		"@testing-library/react": "^16.0.0",
 		"@testing-library/user-event": "^14.0.0",
 		"@types/react": "^18.0.0",
