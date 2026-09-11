@@ -39,7 +39,7 @@
 	"dependencies": {
 		"@emito/provider-kit": "workspace:*",
 		"@emito/types": "workspace:*",
-		"resend": "^4.0.0",
+		"resend": "^6.26.0",
 		"zod": "^3.24.0"
 	},
 	"devDependencies": {
