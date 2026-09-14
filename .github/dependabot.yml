@@ -11,10 +11,10 @@ updates:
       # One PR per class of update keeps the review queue readable.
       dev-dependencies:
         dependency-type: development
-        update-types: [minor, patch]
-      production-minor-patch:
+        update-types: [patch]
+      production-patch:
         dependency-type: production
-        update-types: [minor, patch]
+        update-types: [patch]
     commit-message:
       prefix: chore
       include: scope
@@ -28,7 +28,7 @@ updates:
     groups:
       docs-dependencies:
         patterns: ["*"]
-        update-types: [minor, patch]
+        update-types: [patch]
     commit-message:
       prefix: chore(docs)
 
