@@ -39,7 +39,7 @@
 	"dependencies": {
 		"@emito/provider-kit": "workspace:*",
 		"@emito/types": "workspace:*",
-		"firebase-admin": "^13.0.0",
+		"firebase-admin": "^14.4.0",
 		"zod": "^3.24.0"
 	},
 	"devDependencies": {
