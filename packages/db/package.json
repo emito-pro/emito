@@ -51,7 +51,7 @@
 		"@testcontainers/postgresql": "^10.0.0",
 		"@vitest/coverage-v8": "^3.0.0",
 		"drizzle-kit": "^0.31.0",
-		"testcontainers": "^10.0.0",
+		"testcontainers": "^12.1.0",
 		"typescript": "^5.8.0",
 		"vitest": "^3.0.0"
 	}
